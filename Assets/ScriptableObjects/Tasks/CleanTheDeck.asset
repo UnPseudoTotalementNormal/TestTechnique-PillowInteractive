@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fb60bdb19e74342af2fac172e5a12f1, type: 3}
-  m_Name: CleanTheDec
+  m_Name: CleanTheDeck
   m_EditorClassIdentifier: 
   taskName: Nettoie le pont
   taskDescription: Je veux pouvoir manger sur le sol !
