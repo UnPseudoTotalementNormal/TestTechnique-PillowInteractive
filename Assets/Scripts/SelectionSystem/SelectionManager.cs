@@ -1,6 +1,7 @@
 using System;
 using CustomAttributes;
 using Sailor;
+using TaskSystem;
 using UnityEngine;
 
 namespace SelectionSystem
@@ -38,7 +39,11 @@ namespace SelectionSystem
             Ray _ray = Camera.main.ScreenPointToRay(_clickPosition);
             if (Physics.Raycast(_ray, out RaycastHit _hit))
             {
-                currentlySelectedSailor.GetComponent<SailorMovement>().SetDestination(_hit.point);
+                var _taskComponent = _hit.collider.GetComponentInParent<TaskComponent>();
+                if (_taskComponent)
+                {
+                    currentlySelectedSailor.TryAssignTask(_taskComponent);
+                }
             }
         }
         

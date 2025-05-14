@@ -1,5 +1,6 @@
 using System;
 using CustomAttributes;
+using TaskSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,10 +8,11 @@ namespace Sailor
 {
     public class SailorController : MonoBehaviour
     {
-        public SailorStates currentState { get; private set; } = SailorStates.Idle;
+        [field:SerializeField, ReadOnly] public SailorStates currentState { get; private set; } = SailorStates.Idle;
 
         [Header("References")] 
         [SerializeField] private SailorMovement sailorMovement;
+        [ReadOnly] public TaskComponent currentTask;
         
         [Header("Values")]
         [ReadOnly] public float tiredness;
@@ -40,7 +42,13 @@ namespace Sailor
 
         private void OnTaskStateUpdate()
         {
+            if (!sailorMovement.isAtDestination || currentTask.isTaskInProgress)
+            {
+                return;
+            }
             
+            currentTask.StartTask();
+            currentTask.onTaskCompleted.AddListener(OnTaskCompleted);
         }
 
         private void TiredStateUpdate()
@@ -57,31 +65,61 @@ namespace Sailor
 
         public void SetState(SailorStates _newState)
         {
+            //handle old state exit
             SailorStates _oldState = currentState;
-
             switch (_oldState)
             {
                 case SailorStates.Idle:
                     break;
                 case SailorStates.OnTask:
+                    currentTask.onTaskCompleted.RemoveListener(OnTaskCompleted);
+                    currentTask = null;
                     break;
                 case SailorStates.Tired:
                     break;
             }
             
+            //handle new state enter
             currentState = _newState;
             switch (currentState)
             {
                 case SailorStates.Idle:
                     break;
                 case SailorStates.OnTask:
+                    sailorMovement.SetDestination(currentTask.taskPositionTransform.position);
                     break;
                 case SailorStates.Tired:
                     break;
             }
         }
-
-
+        
+        private void OnTaskCompleted()
+        {
+            tiredness += currentTask.taskObject.tiringValue;
+            
+            if (tiredness >= tirednessThreshold)
+            {
+                SetState(SailorStates.Tired);
+                return;
+            }
+            SetState(SailorStates.Idle);
+        }
+        
+        public bool CanAcceptTask(TaskComponent _taskComponent)
+        {
+            return currentState == SailorStates.Idle && _taskComponent.isTaskAvailable;
+        }
+    
+        public void TryAssignTask(TaskComponent _taskComponent)
+        {
+            if (!CanAcceptTask(_taskComponent))
+            {
+                return;
+            }
+            
+            currentTask = _taskComponent;
+            SetState(SailorStates.OnTask);
+        }
     }
     
     public enum SailorStates

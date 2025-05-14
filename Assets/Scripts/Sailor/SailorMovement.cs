@@ -1,4 +1,5 @@
 using System;
+using CustomAttributes;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,8 @@ namespace Sailor
         public float speed = 5f;
         public float rotationSpeed = 720f;
         public float stoppingDistance = 0.1f;
+
+        [ReadOnly] public bool isAtDestination = true;
         
         private NavMeshPath currentPath;
         private int currentCornerIndex;
@@ -45,6 +48,7 @@ namespace Sailor
                 {
                     currentPath = null;
                     currentCornerIndex = 0;
+                    isAtDestination = true;
                 }
             }
 
@@ -58,6 +62,7 @@ namespace Sailor
             {
                 currentPath = _newPath;
                 currentCornerIndex = 0;
+                isAtDestination = false;
             }
             else
             {
