@@ -19,20 +19,6 @@ namespace Sailor
 
         private void Update()
         {
-            //Test//
-            
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(_ray, out RaycastHit _hit))
-                {
-                    sailorMovement.SetDestination(_hit.point + Vector3.up * 0.5f);
-                }
-            }
-            
-            ////////
-            
-            
             switch (currentState)
             {
                 case SailorStates.Idle:
