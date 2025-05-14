@@ -33,9 +33,8 @@ namespace Sailor
 
         private void Move()
         {
-            Vector2 _flatPosition = new Vector2(transform.position.x, transform.position.z);
-            Vector2 _flatDestination = new Vector2(currentPath.corners[currentCornerIndex].x, currentPath.corners[currentCornerIndex].z);
-            Vector3 _modifiedYDestination = new Vector3(_flatDestination.x, transform.position.y, _flatDestination.y);
+            Vector3 _destination = currentPath.corners[currentCornerIndex];
+            Vector3 _modifiedYDestination = new Vector3(_destination.x, transform.position.y, _destination.z);
             
             transform.position = Vector3.MoveTowards(transform.position, _modifiedYDestination, Time.deltaTime * 5f);
             
