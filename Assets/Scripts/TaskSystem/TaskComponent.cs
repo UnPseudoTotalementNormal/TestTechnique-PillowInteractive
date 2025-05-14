@@ -12,8 +12,9 @@ namespace TaskSystem
 
         [ReadOnly] public float taskTimer;
 
-        /*[ReadOnly]*/ public bool isTaskAvailable;
+        [ReadOnly] public bool isTaskAvailable;
         [ReadOnly] public bool isTaskInProgress;
+        [ReadOnly] public bool isTaskTaken;
         
         public UnityEvent onTaskStarted = new();
         public UnityEvent onTaskCanceled = new();
@@ -40,11 +41,17 @@ namespace TaskSystem
                 CompleteTask();
             }
         }
+        
+        public void TakeTask()
+        {
+            isTaskTaken = true;
+            isTaskAvailable = false;
+        }
 
         public void StartTask()
         {
-            isTaskInProgress = true;
             isTaskAvailable = false;
+            isTaskInProgress = true;
             taskTimer = 0f;
             onTaskStarted?.Invoke();
         }
@@ -52,6 +59,7 @@ namespace TaskSystem
         public void CancelTask()
         {
             isTaskInProgress = false;
+            isTaskTaken = false;
             isTaskAvailable = true;
             onTaskCanceled?.Invoke();
         }
@@ -59,6 +67,7 @@ namespace TaskSystem
         public void CompleteTask()
         {
             isTaskInProgress = false;
+            isTaskTaken = false;
             onTaskCompleted?.Invoke();
         }
     }

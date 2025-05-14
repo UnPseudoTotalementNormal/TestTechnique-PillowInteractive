@@ -93,6 +93,7 @@ namespace Sailor
                 case SailorStates.Idle:
                     break;
                 case SailorStates.OnTask:
+                    currentTask!.TakeTask();
                     sailorMovement.SetDestination(currentTask.taskPositionTransform.position);
                     break;
                 case SailorStates.Tired:

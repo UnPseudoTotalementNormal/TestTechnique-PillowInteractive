@@ -4340,6 +4340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1208953928}
+  - component: {fileID: 1208953929}
   m_Layer: 0
   m_Name: Tasks
   m_TagString: Untagged
@@ -4364,6 +4365,22 @@ Transform:
   - {fileID: 1023993260}
   m_Father: {fileID: 202101768}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1208953929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208953927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650965e007440fb4aaefefca0b4895a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskComponents: []
+  taskSpawnMinInterval: 5
+  taskSpawnMaxInterval: 23
+  taskSpawnTimer: 0
 --- !u!1 &1214053983
 GameObject:
   m_ObjectHideFlags: 0
@@ -6251,8 +6268,9 @@ MonoBehaviour:
   taskPositionTransform: {fileID: 607204069}
   taskObject: {fileID: 11400000, guid: 5612a55de2de80a418f4f002c3ca0c39, type: 2}
   taskTimer: 0
-  isTaskAvailable: 1
+  isTaskAvailable: 0
   isTaskInProgress: 0
+  isTaskTaken: 0
   onTaskStarted:
     m_PersistentCalls:
       m_Calls: []
