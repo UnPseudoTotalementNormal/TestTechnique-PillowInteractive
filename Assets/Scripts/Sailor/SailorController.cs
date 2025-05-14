@@ -19,6 +19,8 @@ namespace Sailor
         public float tirednessThreshold = 100f;
         public float tirednessRecoverySpeed = 10f;
         /*[ReadOnly]*/ public Vector3 homePosition;
+
+        public event Action<SailorStates, SailorStates> onStateChanged; //Old state, new state
         
 
         private void Update()
@@ -100,6 +102,8 @@ namespace Sailor
                     sailorMovement.SetDestination(homePosition);
                     break;
             }
+            
+            onStateChanged?.Invoke(_oldState, _newState);
         }
         
         private void OnTaskCompleted()
