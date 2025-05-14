@@ -15,3 +15,4 @@ MonoBehaviour:
   taskName: Prends le gouvernail
   taskDescription: "Dirige le navire pour \xEAtre s\xFBr d'arriver \xE0 destination"
   taskDuration: 10
+  tiringValue: 100

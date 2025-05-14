@@ -2,23 +2,23 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sailor
+namespace Sailor.UI
 {
-    public class TaskCompletionDisplay : MonoBehaviour
+    public class SleepCompletionDisplay : MonoBehaviour
     {
         [SerializeField] private SailorController sailorController;
-        [SerializeField] private Image taskProgressBar;
+        [SerializeField] private Image sleepProgressBar;
     
         private bool isVisible;
     
         private void Awake()
         {
-            taskProgressBar.fillAmount = 0;
+            Hide();
         }
 
         private void Update()
         {
-            if (!sailorController.currentTask || !sailorController.currentTask.isTaskInProgress)
+            if (sailorController.currentState != SailorStates.Tired)
             {
                 if (isVisible)
                 {
@@ -32,19 +32,21 @@ namespace Sailor
                 Show();
             }
         
-            float _taskProgress = sailorController.currentTask.taskTimer / sailorController.currentTask.taskObject.taskDuration;
-            taskProgressBar.fillAmount = _taskProgress;
+            float _sleepProgress = 1f - (sailorController.tiredness / sailorController.tirednessThreshold);
+            sleepProgressBar.fillAmount = _sleepProgress;
         }
 
         private void Show()
         {
-            taskProgressBar.DOFade(1, 0.5f);
+            sleepProgressBar.transform.DOScale(Vector3.one, 0.5f);
+            sleepProgressBar.DOFade(1, 0.5f);
             isVisible = true;
         }
 
         private void Hide()
         {
-            taskProgressBar.DOFade(0, 0.5f);
+            sleepProgressBar.transform.DOScale(Vector3.zero, 0.5f);
+            sleepProgressBar.DOFade(0, 0.5f);
             isVisible = false;
         }
     }

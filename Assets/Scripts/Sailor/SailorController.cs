@@ -17,6 +17,8 @@ namespace Sailor
         [Header("Values")]
         [ReadOnly] public float tiredness;
         public float tirednessThreshold = 100f;
+        public float tirednessRecoverySpeed = 10f;
+        /*[ReadOnly]*/ public Vector3 homePosition;
         
 
         private void Update()
@@ -53,13 +55,18 @@ namespace Sailor
 
         private void TiredStateUpdate()
         {
-            tiredness -= Time.deltaTime;
+            if (!sailorMovement.isAtDestination)
+            {
+                return;
+            }
+            
+            tiredness -= tirednessRecoverySpeed * Time.deltaTime;
             if (tiredness > 0)
             {
                 return;
             }
             
-            SetState(SailorStates.Tired);
+            SetState(SailorStates.Idle);
             tiredness = 0;
         }
 
@@ -89,6 +96,7 @@ namespace Sailor
                     sailorMovement.SetDestination(currentTask.taskPositionTransform.position);
                     break;
                 case SailorStates.Tired:
+                    sailorMovement.SetDestination(homePosition);
                     break;
             }
         }
