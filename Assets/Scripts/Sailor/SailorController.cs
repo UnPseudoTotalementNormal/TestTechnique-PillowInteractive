@@ -1,6 +1,7 @@
 using System;
 using CustomAttributes;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Sailor
 {
@@ -8,11 +9,30 @@ namespace Sailor
     {
         public SailorStates currentState { get; private set; } = SailorStates.Idle;
 
+        [Header("References")] 
+        [SerializeField] private SailorMovement sailorMovement;
+        
+        [Header("Values")]
         [ReadOnly] public float tiredness;
         public float tirednessThreshold = 100f;
+        
 
         private void Update()
         {
+            //Test//
+            
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(_ray, out RaycastHit _hit))
+                {
+                    sailorMovement.SetDestination(_hit.point + Vector3.up * 0.5f);
+                }
+            }
+            
+            ////////
+            
+            
             switch (currentState)
             {
                 case SailorStates.Idle:
