@@ -1,4 +1,5 @@
 using System;
+using CustomAttributes;
 using UnityEngine;
 
 namespace Sailor
@@ -7,17 +8,45 @@ namespace Sailor
     {
         public SailorStates currentState { get; private set; } = SailorStates.Idle;
 
+        [ReadOnly] public float tiredness;
+        public float tirednessThreshold = 100f;
+
         private void Update()
         {
             switch (currentState)
             {
                 case SailorStates.Idle:
+                    IdleStateUpdate();
                     break;
                 case SailorStates.OnTask:
+                    OnTaskStateUpdate();
                     break;
                 case SailorStates.Tired:
+                    TiredStateUpdate();
                     break;
             }
+        }
+
+        private void IdleStateUpdate()
+        {
+            
+        }
+
+        private void OnTaskStateUpdate()
+        {
+            
+        }
+
+        private void TiredStateUpdate()
+        {
+            tiredness -= Time.deltaTime;
+            if (tiredness > 0)
+            {
+                return;
+            }
+            
+            SetState(SailorStates.Tired);
+            tiredness = 0;
         }
 
         public void SetState(SailorStates _newState)
