@@ -110,15 +110,16 @@ namespace Sailor
             return currentState == SailorStates.Idle && _taskComponent.isTaskAvailable;
         }
     
-        public void TryAssignTask(TaskComponent _taskComponent)
+        public bool TryAssignTask(TaskComponent _taskComponent)
         {
             if (!CanAcceptTask(_taskComponent))
             {
-                return;
+                return false;
             }
             
             currentTask = _taskComponent;
             SetState(SailorStates.OnTask);
+            return true;
         }
     }
     
