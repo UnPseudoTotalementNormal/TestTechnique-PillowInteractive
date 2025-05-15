@@ -5,6 +5,7 @@
 Les tâches apparaissent à un certain intervalle. Lorsqu'une tâche doit être effectuée, une icône apparaît au-dessus.
 Pour effectuer une tâche, vous devez cliquer (gauche) sur un matelot pour le sélectionner, puis cliquer (droit) sur la tâche disponible.  
 Lorsque les matelots ont effectué des tâches et sont fatigués, ils iront se reposer puis seront à nouveau disponibles.  
+Le personnage bleu foncé est le capitaine du bateau qui sert de feedback pour les ordres, il ne peut pas être sélectionné.
 
 ## Contrôles :  
 Clic gauche : sélectionner un matelot.  
