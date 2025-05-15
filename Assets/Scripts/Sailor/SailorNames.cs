@@ -13,6 +13,7 @@ namespace Sailor
             "Hector Barbossa",
             "Jack Sparrow",
             "Davy Jones",
+            "Jean Damien",
         };
     }
 }

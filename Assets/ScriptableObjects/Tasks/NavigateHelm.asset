@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskName: Prends le gouvernail
   taskDescription: "Dirige le navire pour \xEAtre s\xFBr d'arriver \xE0 destination"
-  taskDuration: 10
+  taskDuration: 15
   tiringValue: 40

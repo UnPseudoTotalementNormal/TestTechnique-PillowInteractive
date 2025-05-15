@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a87520d1bc469f8c1711db6ce74001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sailorController: {fileID: 2448365179982791572}
+  sailorAI: {fileID: 2448365179982791572}
   sleepProgressBar: {fileID: 5528298312254511282}
 --- !u!1 &140690312248443553
 GameObject:
@@ -101,6 +101,7 @@ MonoBehaviour:
   <currentState>k__BackingField: 0
   sailorMovement: {fileID: 6622286461053158093}
   currentTask: {fileID: 0}
+  sailorName: John Sailor
   tiredness: 0
   tirednessThreshold: 100
   tirednessRecoverySpeed: 10
@@ -285,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc74107de9d64fd9965d73f6326b04b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sailorController: {fileID: 2448365179982791572}
+  sailorAI: {fileID: 2448365179982791572}
   canvasGroup: {fileID: 932604490366594194}
   targetState: 0
   transitionDuration: 0.5
@@ -350,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef5bb34820197a4da85a03a61626f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sailorController: {fileID: 2448365179982791572}
+  sailorAI: {fileID: 2448365179982791572}
   taskProgressBar: {fileID: 4809287731389076629}
 --- !u!1 &5811666843620642252
 GameObject:

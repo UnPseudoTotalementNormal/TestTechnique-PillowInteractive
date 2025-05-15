@@ -9,14 +9,14 @@ namespace SelectionSystem
 {
     public class SelectionManager : MonoBehaviour
     {
-        [FormerlySerializedAs("currentlySelectedSailor")] [ReadOnly] public Sailor.SailorAI currentlySelectedSailorAI;
+        [ReadOnly] public SailorAI currentlySelectedSailorAI;
 
         public void TrySelectAt(Vector2 _clickPosition)
         {
             Ray _ray = Camera.main.ScreenPointToRay(_clickPosition);
             if (Physics.Raycast(_ray, out RaycastHit _hit))
             {
-                Sailor.SailorAI _hitSailorAI = _hit.collider.GetComponentInParent<Sailor.SailorAI>();
+                SailorAI _hitSailorAI = _hit.collider.GetComponentInParent<SailorAI>();
                 if (_hitSailorAI)
                 {
                     SelectSailor(_hitSailorAI);
@@ -53,7 +53,7 @@ namespace SelectionSystem
             currentlySelectedSailorAI = null;
         }
 
-        private void SelectSailor(Sailor.SailorAI _sailorAI)
+        private void SelectSailor(SailorAI _sailorAI)
         {
             if (currentlySelectedSailorAI)
             {

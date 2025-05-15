@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskName: Tir d'artillerie
   taskDescription: Charge puis fais tirer un canon du bateau
-  taskDuration: 6
+  taskDuration: 10
+  tiringValue: 25

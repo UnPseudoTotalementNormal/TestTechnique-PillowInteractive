@@ -73,7 +73,7 @@ namespace Sailor
         private void SetYPositionOnGround()
         {
             float _rayLength = 10f;
-            if (Physics.Raycast(transform.position, Vector3.down, out var _hit, _rayLength))
+            if (Physics.Raycast(transform.position, Vector3.down, out var _hit, _rayLength, ~(1 << LayerMask.NameToLayer("Task"))))
             {
                 Vector3 _pos = transform.position;
                 _pos.y = _hit.point.y + 2f * 0.5f;

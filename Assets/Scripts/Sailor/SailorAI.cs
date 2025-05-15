@@ -114,7 +114,7 @@ namespace Sailor
         
         private void OnTaskCompleted()
         {
-            tiredness += currentTask.taskObject.tiringValue;
+            tiredness = Mathf.Clamp(currentTask.taskObject.tiringValue + tiredness, 0, tirednessThreshold);
             
             if (tiredness >= tirednessThreshold)
             {

@@ -15,3 +15,4 @@ MonoBehaviour:
   taskName: Nettoie le pont
   taskDescription: Je veux pouvoir manger sur le sol !
   taskDuration: 20
+  tiringValue: 60

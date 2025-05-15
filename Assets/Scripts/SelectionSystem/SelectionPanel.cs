@@ -65,7 +65,7 @@ public class SelectionPanel : MonoBehaviour
 
     private void UpdateTexts()
     {
-        Sailor.SailorAI _selectedSailorAI = selectionManager.currentlySelectedSailorAI;
+        SailorAI _selectedSailorAI = selectionManager.currentlySelectedSailorAI;
         if (_selectedSailorAI)
         {
             sailorNameText.text = _selectedSailorAI.sailorName;
