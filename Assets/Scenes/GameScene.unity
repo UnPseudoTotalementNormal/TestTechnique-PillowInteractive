@@ -5063,6 +5063,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 595718254734516486, guid: 1f314dde3e3958d4fa27085a20680dbe, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 215
+      objectReference: {fileID: 0}
     - target: {fileID: 610206025318884950, guid: 1f314dde3e3958d4fa27085a20680dbe, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

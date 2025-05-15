@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 3940540153623416757}
   - component: {fileID: 2448365179982791572}
   - component: {fileID: 6622286461053158093}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sailor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 1327678677570068949}
   - component: {fileID: 8032009647485306861}
   - component: {fileID: 8836866880031797011}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

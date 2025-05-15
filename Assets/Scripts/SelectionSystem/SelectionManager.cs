@@ -22,7 +22,8 @@ namespace SelectionSystem
         public void TrySelectAt(Vector2 _clickPosition)
         {
             Ray _ray = Camera.main.ScreenPointToRay(_clickPosition);
-            if (Physics.Raycast(_ray, out RaycastHit _hit))
+            int _layer = LayerMask.GetMask("Sailor");
+            if (Physics.Raycast(_ray, out RaycastHit _hit, Mathf.Infinity, _layer))
             {
                 SailorAI _hitSailorAI = _hit.collider.GetComponentInParent<SailorAI>();
                 if (_hitSailorAI)
@@ -49,7 +50,8 @@ namespace SelectionSystem
             }
             
             Ray _ray = Camera.main.ScreenPointToRay(_clickPosition);
-            if (Physics.Raycast(_ray, out RaycastHit _hit))
+            int _layer = LayerMask.GetMask("Task");
+            if (Physics.Raycast(_ray, out RaycastHit _hit, Mathf.Infinity, _layer))
             {
                 var _taskComponent = _hit.collider.GetComponentInParent<TaskComponent>();
                 if (_taskComponent && currentlySelectedSailorAI.TryAssignTask(_taskComponent))
@@ -114,7 +116,8 @@ namespace SelectionSystem
         {
             Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             TaskComponent _hitTask = null;
-            if (Physics.Raycast(_ray, out RaycastHit _hit))
+            int _layer = LayerMask.GetMask("Task");
+            if (Physics.Raycast(_ray, out RaycastHit _hit, Mathf.Infinity, _layer))
             {
                 _hitTask = _hit.collider.GetComponentInParent<TaskComponent>();
             }
