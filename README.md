@@ -2,7 +2,7 @@
 [[LIEN SWISSTRANSFER](https://www.swisstransfer.com/d/056903a2-7149-4ad1-bf11-8d5258705de0)]  
 
 ## Explications :  
-Les tâches apparaissent à un certain intervalle. Lorsqu'une tâche doit être effectuée, une icône apparaît au-dessus.  https://github.com/UnPseudoTotalementNormal/TestTechnique-PillowInteractive/blob/master/README.md
+Les tâches apparaissent à un certain intervalle. Lorsqu'une tâche doit être effectuée, une icône apparaît au-dessus.
 Pour effectuer une tâche, vous devez cliquer (gauche) sur un matelot pour le sélectionner, puis cliquer (droit) sur la tâche disponible.  
 Lorsque les matelots ont effectué des tâches et sont fatigués, ils iront se reposer puis seront à nouveau disponibles.  
 
