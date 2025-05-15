@@ -105,7 +105,10 @@ MonoBehaviour:
   tiredness: 0
   tirednessThreshold: 100
   tirednessRecoverySpeed: 10
+  normalSpeed: 5
+  idleSpeed: 2.5
   homePosition: {x: -2.569, y: 2.885, z: -8.4}
+  idleRandomMoveTime: 3
 --- !u!114 &6622286461053158093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rotationSpeed: 720
   stoppingDistance: 0.1
   isAtDestination: 1
 --- !u!1 &1303722274044718277

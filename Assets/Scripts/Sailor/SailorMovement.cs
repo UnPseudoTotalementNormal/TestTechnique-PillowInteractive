@@ -10,7 +10,7 @@ namespace Sailor
         private new Transform transform;
         
         [Header("Values")]
-        public float speed = 5f;
+        [ReadOnly] public float speed = 5f;
         public float stoppingDistance = 0.1f;
 
         [ReadOnly] public bool isAtDestination = true;
@@ -56,6 +56,11 @@ namespace Sailor
 
             SetYPositionOnGround();
         }
+        
+        public void SetSpeed(float _newSpeed)
+        {
+            speed = _newSpeed;
+        }
 
         public void SetDestination(Vector3 _destination)
         {
@@ -72,6 +77,20 @@ namespace Sailor
             }
         }
 
+        /// <summary>
+        /// Set the destination to a random point on the navmesh
+        /// </summary>
+        public void SetDestinationToRandomPoint()
+        {
+            if (!NavMesh.SamplePosition(UnityEngine.Random.insideUnitSphere * 5, 
+                    out var _hit, 5, NavMesh.AllAreas)) //get a random point on the navmesh
+            {
+                return;
+            }
+            Vector3 _randomNavMeshPoint = _hit.position;
+            SetDestination(_randomNavMeshPoint);
+        }
+        
         /// <summary>
         /// Set the sailor on the ground
         /// </summary>

@@ -20,13 +20,19 @@ namespace Sailor
         [ReadOnly] public float tiredness;
         public float tirednessThreshold = 100f;
         public float tirednessRecoverySpeed = 10f;
+        public float normalSpeed = 5;
+        public float idleSpeed = 1;
         public Vector3 homePosition;
+        
+        [SerializeField] private float idleRandomMoveTime; //time in idle before randomly moving
+        private float idleRandomMoveTimer = 0;
 
         public event Action<SailorStates, SailorStates> onStateChanged; //Old state, new state
 
         private void Awake()
         {
             sailorName = SailorNames.names.PickRandom();
+            SetState(SailorStates.Idle);
         }
 
         private void Update()
@@ -47,7 +53,19 @@ namespace Sailor
 
         private void IdleStateUpdate()
         {
+            if (!sailorMovement.isAtDestination)
+            {
+                return;
+            }
             
+            idleRandomMoveTimer -= Time.deltaTime;
+            if (idleRandomMoveTimer > 0)
+            {
+                return;
+            }
+            
+            idleRandomMoveTimer = idleRandomMoveTime;
+            sailorMovement.SetDestinationToRandomPoint();
         }
 
         private void OnTaskStateUpdate()
@@ -85,6 +103,7 @@ namespace Sailor
             switch (_oldState)
             {
                 case SailorStates.Idle:
+                    sailorMovement.SetSpeed(normalSpeed);
                     break;
                 case SailorStates.OnTask:
                     currentTask.onTaskCompleted.RemoveListener(OnTaskCompleted);
@@ -99,6 +118,7 @@ namespace Sailor
             switch (currentState)
             {
                 case SailorStates.Idle:
+                    sailorMovement.SetSpeed(idleSpeed);
                     break;
                 case SailorStates.OnTask:
                     currentTask!.TakeTask();
