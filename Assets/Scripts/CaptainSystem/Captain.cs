@@ -25,6 +25,9 @@ namespace CaptainSystem
             GiveOrderVisualFeedback(_sailor, _assignedTask);
         }
 
+        /// <summary>
+        /// Displays visual feedback (animated text) above the captain when an order is given to a sailor for a task.
+        /// </summary>
         private void GiveOrderVisualFeedback(SailorAI _sailor, TaskComponent _assignedTask)
         {
             var _newOrderText = Instantiate(orderTextPrefab, transform.position + Vector3.up * 2, Quaternion.identity);

@@ -11,7 +11,6 @@ namespace Sailor
         
         [Header("Values")]
         public float speed = 5f;
-        public float rotationSpeed = 720f;
         public float stoppingDistance = 0.1f;
 
         [ReadOnly] public bool isAtDestination = true;
@@ -34,17 +33,20 @@ namespace Sailor
             Move();
         }
 
+        /// <summary>
+        /// Move toward the current path corner
+        /// </summary>
         private void Move()
         {
             Vector3 _destination = currentPath.corners[currentCornerIndex];
-            Vector3 _modifiedYDestination = new Vector3(_destination.x, transform.position.y, _destination.z);
+            Vector3 _modifiedYDestination = new Vector3(_destination.x, transform.position.y, _destination.z); //destination ignoring Y
             
-            transform.position = Vector3.MoveTowards(transform.position, _modifiedYDestination, Time.deltaTime * 5f);
+            transform.position = Vector3.MoveTowards(transform.position, _modifiedYDestination, Time.deltaTime * speed);
             
-            if (Vector3.Distance(transform.position , _modifiedYDestination) < stoppingDistance)
+            if (Vector3.Distance(transform.position , _modifiedYDestination) < stoppingDistance) //check if at path corner 
             {
                 currentCornerIndex++;
-                if (currentCornerIndex >= currentPath.corners.Length)
+                if (currentCornerIndex >= currentPath.corners.Length) //check if at destination
                 {
                     currentPath = null;
                     currentCornerIndex = 0;
@@ -70,6 +72,9 @@ namespace Sailor
             }
         }
 
+        /// <summary>
+        /// Set the sailor on the ground
+        /// </summary>
         private void SetYPositionOnGround()
         {
             float _rayLength = 10f;

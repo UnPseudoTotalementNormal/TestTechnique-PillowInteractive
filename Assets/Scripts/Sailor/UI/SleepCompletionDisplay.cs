@@ -23,14 +23,14 @@ namespace Sailor.UI
             {
                 if (isVisible)
                 {
-                    Hide();
+                    Hide(); // Hide the UI if the sailor is not tired
                 }
                 return;
             }
         
             if (!isVisible)
             {
-                Show();
+                Show(); // Show the UI if the sailor is tired
             }
         
             float _sleepProgress = 1f - (sailorAI.tiredness / sailorAI.tirednessThreshold);

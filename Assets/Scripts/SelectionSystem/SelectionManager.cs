@@ -16,6 +16,9 @@ namespace SelectionSystem
         
         public event Action<SailorAI, TaskComponent> onTaskAssigned;
         
+        /// <summary>
+        /// Try to select a sailor at the given mouse position
+        /// </summary>
         public void TrySelectAt(Vector2 _clickPosition)
         {
             Ray _ray = Camera.main.ScreenPointToRay(_clickPosition);
@@ -35,6 +38,9 @@ namespace SelectionSystem
             }
         }
         
+        /// <summary>
+        /// Try to assign a task to the currently selected sailor
+        /// </summary>
         public void TryOrderAt(Vector2 _clickPosition)
         {
             if (currentlySelectedSailorAI == null)
@@ -77,6 +83,9 @@ namespace SelectionSystem
             lastHoveredTask = _hoveredTask;
         }
 
+        /// <summary>
+        /// Highlight the task visuals when hovered & unhighlight when not hovered
+        /// </summary>
         private void HoverTaskVisuals(TaskComponent _taskComponent, bool _hover)
         {
             _taskComponent.taskModelTransform.DOScale(_hover ? 1.5f : 1f, 0.5f).SetEase(Ease.OutQuint);

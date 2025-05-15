@@ -23,6 +23,9 @@ namespace Sailor.UI
             CheckState(_newState);
         }
         
+        /// <summary>
+        /// check if the state is the same as the target state and show or hide the UI accordingly
+        /// </summary>
         private void CheckState(SailorStates _state)
         {
             if (_state == targetState)

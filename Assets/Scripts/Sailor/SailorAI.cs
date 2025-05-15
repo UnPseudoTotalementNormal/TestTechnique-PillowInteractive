@@ -20,7 +20,7 @@ namespace Sailor
         [ReadOnly] public float tiredness;
         public float tirednessThreshold = 100f;
         public float tirednessRecoverySpeed = 10f;
-        /*[ReadOnly]*/ public Vector3 homePosition;
+        public Vector3 homePosition;
 
         public event Action<SailorStates, SailorStates> onStateChanged; //Old state, new state
 

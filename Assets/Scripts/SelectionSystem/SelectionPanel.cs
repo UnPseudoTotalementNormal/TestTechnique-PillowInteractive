@@ -47,22 +47,24 @@ public class SelectionPanel : MonoBehaviour
         {
             if (isVisible)
             {
-                Hide();
+                Hide(); // Hide the UI if there is no selected sailor
             }
             return;
         }
         
         if (!isVisible)
         {
-            Show();
+            Show(); // Show the UI if there is a selected sailor
         }
 
-        hoveredTask = selectionManager.GetHoveredTask();
+        hoveredTask = selectionManager.GetHoveredTask(); // Update the hovered task value
         UpdateTexts();
     }
 
     
-
+    /// <summary>
+    /// Update text fields with the currently selected sailor and hovered task information
+    /// </summary>
     private void UpdateTexts()
     {
         SailorAI _selectedSailorAI = selectionManager.currentlySelectedSailorAI;
@@ -89,6 +91,7 @@ public class SelectionPanel : MonoBehaviour
             taskAvailabilityText.text = "Non";
         }
         
+        //force the layout to rebuild to display texts correctly
         foreach (var _rectTransform in layoutsRectTransform)
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);

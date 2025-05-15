@@ -23,14 +23,14 @@ namespace Sailor.UI
             {
                 if (isVisible)
                 {
-                    Hide();
+                    Hide(); // Hide the UI if there is no task or the task is not in progress
                 }
                 return;
             }
         
             if (!isVisible)
             {
-                Show();
+                Show(); // Show the UI if there is a task in progress
             }
         
             float _taskProgress = sailorAI.currentTask.taskTimer / sailorAI.currentTask.taskObject.taskDuration;
