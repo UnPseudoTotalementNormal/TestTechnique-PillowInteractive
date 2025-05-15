@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CleanTheDeck
   m_EditorClassIdentifier: 
   taskName: Nettoie le pont
-  taskDescription: 
+  taskDescription: "Retire toute ces salet\xE9 du pont"
   taskDuration: 20
   tiringValue: 60
   taskOrderPhrase: va nettoyer le pont tout de suite !

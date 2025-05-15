@@ -8,7 +8,9 @@ namespace TaskSystem
     public class TaskComponent : MonoBehaviour
     {
         public Transform taskPositionTransform;
+        public Transform taskModelTransform;
         public TaskObject taskObject;
+        
 
         [ReadOnly] public float taskTimer;
 

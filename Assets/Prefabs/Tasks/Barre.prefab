@@ -402,7 +402,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8105159827162742748}
   - {fileID: 1504158464600109051}
@@ -717,6 +717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskPositionTransform: {fileID: 3980196115549852284}
+  taskModelTransform: {fileID: 8176111800789768553}
   taskObject: {fileID: 11400000, guid: 5612a55de2de80a418f4f002c3ca0c39, type: 2}
   taskTimer: 0
   isTaskAvailable: 0

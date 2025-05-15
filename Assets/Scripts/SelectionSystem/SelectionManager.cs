@@ -1,5 +1,6 @@
 using System;
 using CustomAttributes;
+using DG.Tweening;
 using Sailor;
 using TaskSystem;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace SelectionSystem
     {
         [ReadOnly] public SailorAI currentlySelectedSailorAI;
 
+        private TaskComponent lastHoveredTask;
+        
         public event Action<SailorAI, TaskComponent> onTaskAssigned;
         
         public void TrySelectAt(Vector2 _clickPosition)
@@ -49,10 +52,44 @@ namespace SelectionSystem
                 }
             }
         }
+
+        private void Update()
+        {
+            if (!currentlySelectedSailorAI)
+            {
+                return;
+            }
+            
+            TaskComponent _hoveredTask = GetHoveredTask();
+            if (lastHoveredTask == _hoveredTask)
+            {
+                return;
+            }
+            
+            if (lastHoveredTask)
+            {
+                HoverTaskVisuals(lastHoveredTask, false);
+            }
+            if (_hoveredTask)
+            {
+                HoverTaskVisuals(_hoveredTask, true);
+            }
+            lastHoveredTask = _hoveredTask;
+        }
+
+        private void HoverTaskVisuals(TaskComponent _taskComponent, bool _hover)
+        {
+            _taskComponent.taskModelTransform.DOScale(_hover ? 1.5f : 1f, 0.5f).SetEase(Ease.OutQuint);
+        }
         
         private void UnSelectSailor()
         {
             currentlySelectedSailorAI = null;
+            if (lastHoveredTask)
+            {
+                HoverTaskVisuals(lastHoveredTask, false);
+                lastHoveredTask = null;
+            }
         }
 
         private void SelectSailor(SailorAI _sailorAI)
