@@ -16,3 +16,4 @@ MonoBehaviour:
   taskDescription: "Dirige le navire pour \xEAtre s\xFBr d'arriver \xE0 destination"
   taskDuration: 15
   tiringValue: 40
+  taskOrderPhrase: "\xE0 b\xE2bord toute\u202F!"

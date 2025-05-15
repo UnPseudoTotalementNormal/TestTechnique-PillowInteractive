@@ -9,5 +9,6 @@ namespace TaskSystem
         public string taskDescription;
         public float taskDuration;
         [Range(-100f, 100f)] public float tiringValue = 10f;
+        public string taskOrderPhrase;
     }
 }

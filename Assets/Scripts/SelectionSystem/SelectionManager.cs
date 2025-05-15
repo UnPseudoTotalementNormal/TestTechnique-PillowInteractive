@@ -11,6 +11,8 @@ namespace SelectionSystem
     {
         [ReadOnly] public SailorAI currentlySelectedSailorAI;
 
+        public event Action<SailorAI, TaskComponent> onTaskAssigned;
+        
         public void TrySelectAt(Vector2 _clickPosition)
         {
             Ray _ray = Camera.main.ScreenPointToRay(_clickPosition);
@@ -41,9 +43,9 @@ namespace SelectionSystem
             if (Physics.Raycast(_ray, out RaycastHit _hit))
             {
                 var _taskComponent = _hit.collider.GetComponentInParent<TaskComponent>();
-                if (_taskComponent)
+                if (_taskComponent && currentlySelectedSailorAI.TryAssignTask(_taskComponent))
                 {
-                    currentlySelectedSailorAI.TryAssignTask(_taskComponent);
+                    onTaskAssigned?.Invoke(currentlySelectedSailorAI, _taskComponent);
                 }
             }
         }

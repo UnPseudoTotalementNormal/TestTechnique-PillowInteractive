@@ -16,3 +16,4 @@ MonoBehaviour:
   taskDescription: Assure toi que le bateau ne bouge pas d'ici
   taskDuration: 7
   tiringValue: 20
+  taskOrderPhrase: largue les amarres !
