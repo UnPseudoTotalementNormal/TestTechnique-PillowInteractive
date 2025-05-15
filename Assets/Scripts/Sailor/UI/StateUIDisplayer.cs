@@ -1,11 +1,12 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sailor.UI
 {
     public class StateUIDisplayer : MonoBehaviour
     {
-        [SerializeField] private SailorController sailorController;
+        [FormerlySerializedAs("sailor")] [FormerlySerializedAs("sailorController")] [SerializeField] private SailorAI sailorAI;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private SailorStates targetState;
         
@@ -13,8 +14,8 @@ namespace Sailor.UI
         
         private void Awake()
         {
-            CheckState(sailorController.currentState);
-            sailorController.onStateChanged += OnStateChanged;
+            CheckState(sailorAI.currentState);
+            sailorAI.onStateChanged += OnStateChanged;
         }
 
         private void OnStateChanged(SailorStates _oldState, SailorStates _newState)

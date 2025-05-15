@@ -1,12 +1,13 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Sailor.UI
 {
     public class SleepCompletionDisplay : MonoBehaviour
     {
-        [SerializeField] private SailorController sailorController;
+        [FormerlySerializedAs("sailor")] [FormerlySerializedAs("sailorController")] [SerializeField] private SailorAI sailorAI;
         [SerializeField] private Image sleepProgressBar;
     
         private bool isVisible;
@@ -18,7 +19,7 @@ namespace Sailor.UI
 
         private void Update()
         {
-            if (sailorController.currentState != SailorStates.Tired)
+            if (sailorAI.currentState != SailorStates.Tired)
             {
                 if (isVisible)
                 {
@@ -32,7 +33,7 @@ namespace Sailor.UI
                 Show();
             }
         
-            float _sleepProgress = 1f - (sailorController.tiredness / sailorController.tirednessThreshold);
+            float _sleepProgress = 1f - (sailorAI.tiredness / sailorAI.tirednessThreshold);
             sleepProgressBar.fillAmount = _sleepProgress;
         }
 

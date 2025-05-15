@@ -1,12 +1,13 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Sailor.UI
 {
     public class TaskCompletionDisplay : MonoBehaviour
     {
-        [SerializeField] private SailorController sailorController;
+        [FormerlySerializedAs("sailor")] [FormerlySerializedAs("sailorController")] [SerializeField] private SailorAI sailorAI;
         [SerializeField] private Image taskProgressBar;
     
         private bool isVisible;
@@ -18,7 +19,7 @@ namespace Sailor.UI
 
         private void Update()
         {
-            if (!sailorController.currentTask || !sailorController.currentTask.isTaskInProgress)
+            if (!sailorAI.currentTask || !sailorAI.currentTask.isTaskInProgress)
             {
                 if (isVisible)
                 {
@@ -32,7 +33,7 @@ namespace Sailor.UI
                 Show();
             }
         
-            float _taskProgress = sailorController.currentTask.taskTimer / sailorController.currentTask.taskObject.taskDuration;
+            float _taskProgress = sailorAI.currentTask.taskTimer / sailorAI.currentTask.taskObject.taskDuration;
             taskProgressBar.fillAmount = _taskProgress;
         }
 

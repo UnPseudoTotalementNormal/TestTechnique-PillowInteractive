@@ -3,27 +3,28 @@ using CustomAttributes;
 using Sailor;
 using TaskSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SelectionSystem
 {
     public class SelectionManager : MonoBehaviour
     {
-        [ReadOnly] public SailorController currentlySelectedSailor;
+        [FormerlySerializedAs("currentlySelectedSailor")] [ReadOnly] public Sailor.SailorAI currentlySelectedSailorAI;
 
         public void TrySelectAt(Vector2 _clickPosition)
         {
             Ray _ray = Camera.main.ScreenPointToRay(_clickPosition);
             if (Physics.Raycast(_ray, out RaycastHit _hit))
             {
-                SailorController _hitSailor = _hit.collider.GetComponentInParent<SailorController>();
-                if (_hitSailor)
+                Sailor.SailorAI _hitSailorAI = _hit.collider.GetComponentInParent<Sailor.SailorAI>();
+                if (_hitSailorAI)
                 {
-                    SelectSailor(_hitSailor);
+                    SelectSailor(_hitSailorAI);
                     return;
                 }
             }
             
-            if (currentlySelectedSailor)
+            if (currentlySelectedSailorAI)
             {
                 UnSelectSailor();
             }
@@ -31,7 +32,7 @@ namespace SelectionSystem
         
         public void TryOrderAt(Vector2 _clickPosition)
         {
-            if (currentlySelectedSailor == null)
+            if (currentlySelectedSailorAI == null)
             {
                 return;
             }
@@ -42,23 +43,35 @@ namespace SelectionSystem
                 var _taskComponent = _hit.collider.GetComponentInParent<TaskComponent>();
                 if (_taskComponent)
                 {
-                    currentlySelectedSailor.TryAssignTask(_taskComponent);
+                    currentlySelectedSailorAI.TryAssignTask(_taskComponent);
                 }
             }
         }
         
         private void UnSelectSailor()
         {
-            currentlySelectedSailor = null;
+            currentlySelectedSailorAI = null;
         }
 
-        private void SelectSailor(SailorController _sailor)
+        private void SelectSailor(Sailor.SailorAI _sailorAI)
         {
-            if (currentlySelectedSailor)
+            if (currentlySelectedSailorAI)
             {
                 UnSelectSailor();
             }
-            currentlySelectedSailor = _sailor;
+            currentlySelectedSailorAI = _sailorAI;
+        }
+        
+        public TaskComponent GetHoveredTask()
+        {
+            Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            TaskComponent _hitTask = null;
+            if (Physics.Raycast(_ray, out RaycastHit _hit))
+            {
+                _hitTask = _hit.collider.GetComponentInParent<TaskComponent>();
+            }
+        
+            return _hitTask;
         }
     }
 }

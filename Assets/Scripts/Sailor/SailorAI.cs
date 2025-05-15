@@ -1,12 +1,13 @@
 using System;
 using CustomAttributes;
+using Extensions;
 using TaskSystem;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Sailor
 {
-    public class SailorController : MonoBehaviour
+    public class SailorAI : MonoBehaviour
     {
         [field:SerializeField, ReadOnly] public SailorStates currentState { get; private set; } = SailorStates.Idle;
 
@@ -15,13 +16,18 @@ namespace Sailor
         [ReadOnly] public TaskComponent currentTask;
         
         [Header("Values")]
+        [ReadOnly] public string sailorName = "John Sailor";
         [ReadOnly] public float tiredness;
         public float tirednessThreshold = 100f;
         public float tirednessRecoverySpeed = 10f;
         /*[ReadOnly]*/ public Vector3 homePosition;
 
         public event Action<SailorStates, SailorStates> onStateChanged; //Old state, new state
-        
+
+        private void Awake()
+        {
+            sailorName = SailorNames.names.PickRandom();
+        }
 
         private void Update()
         {
