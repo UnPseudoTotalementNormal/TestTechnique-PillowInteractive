@@ -7,7 +7,7 @@ namespace Sailor.UI
 {
     public class TaskCompletionDisplay : MonoBehaviour
     {
-        [FormerlySerializedAs("sailor")] [FormerlySerializedAs("sailorController")] [SerializeField] private SailorAI sailorAI;
+        [SerializeField] private SailorAI sailorAI;
         [SerializeField] private Image taskProgressBar;
     
         private bool isVisible;

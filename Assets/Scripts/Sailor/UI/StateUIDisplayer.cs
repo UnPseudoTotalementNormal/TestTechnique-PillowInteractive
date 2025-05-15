@@ -6,7 +6,7 @@ namespace Sailor.UI
 {
     public class StateUIDisplayer : MonoBehaviour
     {
-        [FormerlySerializedAs("sailor")] [FormerlySerializedAs("sailorController")] [SerializeField] private SailorAI sailorAI;
+        [SerializeField] private SailorAI sailorAI;
         [SerializeField] private CanvasGroup canvasGroup;
         [SerializeField] private SailorStates targetState;
         

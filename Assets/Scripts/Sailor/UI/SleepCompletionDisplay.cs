@@ -7,7 +7,7 @@ namespace Sailor.UI
 {
     public class SleepCompletionDisplay : MonoBehaviour
     {
-        [FormerlySerializedAs("sailor")] [FormerlySerializedAs("sailorController")] [SerializeField] private SailorAI sailorAI;
+        [SerializeField] private SailorAI sailorAI;
         [SerializeField] private Image sleepProgressBar;
     
         private bool isVisible;
